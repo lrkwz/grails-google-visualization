@@ -23,13 +23,17 @@
         <g:render template="/formatter" model="[visualizationData: visualizationData]" plugin="google-visualization"/>
 
         <g:each var="beforeDrawEvent" in="${visualizationData.beforeDrawEvents}">
-        google.visualization.events.addListener(<%=visualizationData.name%>, '<%=beforeDrawEvent.key%>', <%=beforeDrawEvent.value%>);
+        <g:if test="${beforeDrawEvent.value}">
+            google.visualization.events.addListener(<%=visualizationData.name%>, '<%=beforeDrawEvent.key%>', <%=beforeDrawEvent.value%>);
+        </g:if>
         </g:each>
 
         <%=visualizationData.name%>.draw(<%=visualizationData.name%>_data, <%=visualizationData.options%>);
 
         <g:each var="afterDrawEvent" in="${visualizationData.afterDrawEvents}">
-        google.visualization.events.addListener(<%=visualizationData.name%>, '<%=afterDrawEvent.key%>', <%=afterDrawEvent.value%>);
+        <g:if test="${afterDrawEvent.value}">
+            google.visualization.events.addListener(<%=visualizationData.name%>, '<%=afterDrawEvent.key%>', <%=afterDrawEvent.value%>);
+        </g:if>
         </g:each>
     }
 </script>
