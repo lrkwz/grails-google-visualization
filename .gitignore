@@ -5,6 +5,9 @@ target
 *.ipr
 *.iws
 .idea
+*.zip
+*.sha1
+stacktrace.log
 target/
 plugin.xml
 .settings/
